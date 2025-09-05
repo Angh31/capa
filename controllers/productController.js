@@ -29,7 +29,7 @@ exports.getProducts = async (req, res) => {
 // --- READ ---
 // Obtener todos los productos (GET /api/products)
 
-// --- Conteo ---
+// --- COUNT ---
 // Contar todos los productos (GET /api/products/conteo)
 exports.conteoProducts = async (req, res) => {
   try {
@@ -40,4 +40,17 @@ exports.conteoProducts = async (req, res) => {
     res.status(500).json({ error: 'Error al contar los productos' });
   }
 };
+
+// --- SUM ---
+// Sumar todos los precios de los productos (GET /api/products/total-cost)
+exports.sumatoriaProducts = async (req, res) => {
+  try {
+    const result = await db.query('SELECT SUM(price) FROM products');
+    res.status(200).json({ totalCost: parseFloat(result.rows[0].sum) || 0 });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al calcular la sumatoria de precios' });
+  }
+};
+
 
