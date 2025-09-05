@@ -17,4 +17,8 @@ router.get('/products/conteo', productController.conteoProducts);
 // Endpoint para la sumatoria de precios
 router.get('/products/sumatoria', productController.sumatoriaProducts);
 
+
+// Obtener productos por marca
+router.get('/marca/:id/products', productController.getProductsmarca);
+
 module.exports = router;

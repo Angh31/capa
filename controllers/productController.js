@@ -53,4 +53,21 @@ exports.sumatoriaProducts = async (req, res) => {
   }
 };
 
+// Obtener productos por marca (GET /api/pormarca/:id/products)
+exports.getProductsmarca = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await db.query(
+      'SELECT * FROM products WHERE marca_id = $1',
+      [id]
+    );
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al obtener productos por marca' });
+  }
+};
+
+
+
 
