@@ -11,5 +11,8 @@ router.post('/products', productController.createProduct);
 // Obtener todos los productos
 router.get('/products', productController.getProducts);
 
+// Contar productos
+router.get('/products/conteo', productController.conteoProducts);
+
 
 module.exports = router;

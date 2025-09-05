@@ -29,4 +29,15 @@ exports.getProducts = async (req, res) => {
 // --- READ ---
 // Obtener todos los productos (GET /api/products)
 
+// --- Conteo ---
+// Contar todos los productos (GET /api/products/conteo)
+exports.conteoProducts = async (req, res) => {
+  try {
+    const result = await db.query('SELECT COUNT(*) FROM products');
+    res.status(200).json({ count: parseInt(result.rows[0].count) });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al contar los productos' });
+  }
+};
 
